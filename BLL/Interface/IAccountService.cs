@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace BLL.Interface
 {
-    class IAccountService
+    public interface IAccountService
     {
+         Task<string> Register(string username, string password);
+         Task<string> Login(string username, string password);
     }
 }

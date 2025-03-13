@@ -13,9 +13,9 @@ namespace DAL.DatabaseContext
         {
             this.Database.EnsureCreated();
         }
-        DbSet<Entities.Account> Accounts { get; set; }
-        DbSet<Entities.Checkpoint> Checkpoints { get; set; }
-        DbSet<Entities.Equipment> Equipment { get; set; }
-        DbSet<Entities.InventoryItem> InventoryItems { get; set; }
+        public DbSet<Entities.Account> Accounts { get; set; }
+        public DbSet<Entities.Checkpoint> Checkpoints { get; set; }
+        public DbSet<Entities.Equipment> Equipment { get; set; }
+        public DbSet<Entities.InventoryItem> InventoryItems { get; set; }
     }
 }
