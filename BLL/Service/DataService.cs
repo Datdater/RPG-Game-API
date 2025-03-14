@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Service
 {
+
     public class DataService : IDataService
     {
         private IUnitOfWork _unitOfWork;
@@ -137,12 +138,17 @@ namespace BLL.Service
                 }
                 else
                 {
-                   await _unitOfWork.CheckpointRepository.AddAsync(new DAL.Entities.Checkpoint
+                    var newCheckpoint = new DAL.Entities.Checkpoint
                     {
                         AccountId = account.Id,
                         CheckpointId = item.key,
                         Status = item.value
-                    });
+                    };
+                    if(item.key == dataSaveDTO.CloseCheckpointId)
+                    {
+                        newCheckpoint.IsFinal = true;
+                    }
+                    await _unitOfWork.CheckpointRepository.AddAsync(newCheckpoint);
                 }
             }
 

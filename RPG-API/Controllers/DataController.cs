@@ -1,13 +1,16 @@
 ﻿using BLL.DTO;
 using BLL.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace RPG_API.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
+    [Authorize]
     public class DataController : ControllerBase
     {
         private readonly IDataService _loadDataService;
@@ -25,7 +28,13 @@ namespace RPG_API.Controllers
         [HttpPost]
         public async Task<IActionResult> SaveData(DataSaveDTO data)
         {
-            await _loadDataService.SaveData(data, "dathlecnx");
+            var username = HttpContext.User.FindFirst("username")?.Value;
+            if (string.IsNullOrEmpty(username))
+            {
+                return Unauthorized("Username not found in token.");
+            }
+
+            await _loadDataService.SaveData(data, username);
             return Ok();
         }
     }
