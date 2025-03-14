@@ -12,7 +12,7 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["RPG-API/RPG-API.csproj", "RPG-API/"]
+COPY ["RPG-API.csproj", "RPG-API/"]
 RUN dotnet restore "./RPG-API/RPG-API.csproj"
 COPY . .
 WORKDIR "/src/RPG-API"
