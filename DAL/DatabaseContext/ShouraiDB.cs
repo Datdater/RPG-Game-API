@@ -17,5 +17,6 @@ namespace DAL.DatabaseContext
         public DbSet<Entities.Checkpoint> Checkpoints { get; set; }
         public DbSet<Entities.Equipment> Equipment { get; set; }
         public DbSet<Entities.InventoryItem> InventoryItems { get; set; }
+        public DbSet<Entities.Payment> Payments { get; set; }
     }
 }

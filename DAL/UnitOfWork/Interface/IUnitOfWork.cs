@@ -13,6 +13,7 @@ namespace DAL.IUnitOfWork.Interface
         IInventoryItemRepository InventoryItemRepository { get; }
         ICheckpointRepository CheckpointRepository { get; }
         IEquipmentRepository EquipmentRepository { get; }
+        IPaymentRepository PaymentRepository { get; }
 
         Task<int> SaveChangesAsync();
     }

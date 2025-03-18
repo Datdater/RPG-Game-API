@@ -9,5 +9,7 @@ namespace DAL.Repositories.Interface
 {
     public interface IAccountRepository: IGenericRepository<Account>
     {
+        public Account GetByUsername(string username);
+
     }
 }

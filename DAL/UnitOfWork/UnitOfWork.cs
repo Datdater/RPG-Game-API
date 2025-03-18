@@ -19,6 +19,8 @@ public class UnitOfWork : IUnitOfWork
 
     public IEquipmentRepository EquipmentRepository { get; }
 
+    public IPaymentRepository PaymentRepository { get; }
+
     public UnitOfWork(ShouraiDB context)
     {
         _context = context;
@@ -26,6 +28,8 @@ public class UnitOfWork : IUnitOfWork
         InventoryItemRepository = new InventoryRepository(_context);
         CheckpointRepository = new CheckpointRepository(_context);
         EquipmentRepository = new EquipmentRepository(_context);
+        PaymentRepository = new PaymentRepository(_context);
+
     }
 
     public void Dispose()

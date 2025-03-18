@@ -14,5 +14,12 @@ namespace DAL.Repositories
         public AccountRepository(ShouraiDB context) : base(context)
         {
         }
+
+        public Account GetByUsername(string username)
+        {
+            var result = _query.FirstOrDefault(a => a.Username == username);
+            // Reset query for next operation
+            return result;
+        }
     }
 }

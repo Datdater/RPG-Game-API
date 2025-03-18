@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Net.payOS;
 using System.Text;
 
 namespace RPG_API
@@ -19,6 +20,13 @@ namespace RPG_API
             // Add services to the container.
 
             builder.Services.AddScoped<IAccountService, AccountService>();
+            builder.Services.AddScoped<IPaymentService, PaymentService>();
+            var configuration = builder.Configuration;
+            PayOS payOS = new PayOS(configuration["PayOS:PAYOS_CLIENT_ID"] ?? throw new Exception("Cannot find environment"),
+                configuration["PayOS:PAYOS_API_KEY"] ?? throw new Exception("Cannot find environment"),
+                configuration["PayOS:PAYOS_CHECKSUM_KEY"] ?? throw new Exception("Cannot find environment"));
+            builder.Services.AddSingleton(payOS);
+
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
