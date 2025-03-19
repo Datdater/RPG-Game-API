@@ -165,5 +165,22 @@ namespace BLL.Service
 
             await _unitOfWork.SaveChangesAsync();
         }
+
+        public async Task<int> LoadRuby(string username)
+        {
+            var accountList = await _unitOfWork.AccountRepository.Include(x => x.InventoryItems).GetAllAsync();
+            var account = accountList.FirstOrDefault(x => x.Username == username);
+            var ruby = account.Ruby;
+            return ruby;
+        }
+
+        public async Task SaveRuby(int ruby, string username)
+        {
+            var accountList = await _unitOfWork.AccountRepository.Include(x => x.InventoryItems).GetAllAsync();
+            var account = accountList.FirstOrDefault(x => x.Username == username);
+            account.Ruby = ruby;
+            await _unitOfWork.AccountRepository.UpdateAsync(account);
+            await _unitOfWork.SaveChangesAsync();
+        }
     }
 }

@@ -59,7 +59,7 @@ namespace BLL.Service
                             AccountId = account.Id
                         };
                         await unitOfWork.PaymentRepository.AddAsync(paymentSave);
-                        account.Gold += checkPayment.transactions[0].amount / 100;
+                        account.Ruby += checkPayment.transactions[0].amount / 10000;
                         await unitOfWork.AccountRepository.UpdateAsync(account);
                         await unitOfWork.SaveChangesAsync();
                     }

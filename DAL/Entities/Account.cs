@@ -16,6 +16,7 @@ namespace DAL.Entities
         public int Intelligence { get; set; }
         public int Vitality { get; set; }
         public int Gold { get; set; }
+        public int Ruby { get; set; }
         public string ScreenName { get; set; }
 
         //navigation property

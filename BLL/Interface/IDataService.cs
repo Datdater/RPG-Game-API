@@ -11,5 +11,7 @@ namespace BLL.Interface
     {
         public Task<DataLoadDTO> LoadData(string username);
         public Task SaveData(DataSaveDTO data, string username);
+        public Task<int> LoadRuby(string username);
+        public Task SaveRuby(int ruby, string username);
     }
 }

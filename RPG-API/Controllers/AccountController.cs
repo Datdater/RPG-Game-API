@@ -30,7 +30,7 @@ namespace RPG_API.Controllers
                 return BadRequest(new { error = ex.Message });
             }
         }
-
+        
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDTO model)
         {
