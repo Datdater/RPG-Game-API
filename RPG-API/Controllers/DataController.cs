@@ -21,8 +21,13 @@ namespace RPG_API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetData(string username)
+        public async Task<IActionResult> GetData()
         {
+            var username = HttpContext.User.FindFirst("username")?.Value;
+            if (string.IsNullOrEmpty(username))
+            {
+                return Unauthorized("Username not found in token.");
+            }
             var response = await _loadDataService.LoadData(username);
             return Ok(response);
         }
