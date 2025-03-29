@@ -34,7 +34,7 @@ namespace BLL.Service
             {
                 Username = username,
                 Password = password,
-                ScreenName = "Level1",
+                ScreenName = "EarthScene",
                 Strength = 0,
                 Agility = 0,
                 Intelligence = 0,
