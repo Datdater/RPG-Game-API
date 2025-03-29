@@ -27,7 +27,11 @@ namespace RPG_API.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(new { error = ex.Message });
+                if (ex.Message == "Username already exists.")
+                {
+                    return BadRequest(new { error = ex.Message });
+                }
+                return StatusCode(500, new { error = ex.Message });
             }
         }
 

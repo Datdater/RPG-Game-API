@@ -27,31 +27,24 @@ namespace BLL.Service
 
         public async Task<string> Register(string username, string password)
         {
-            try
-            {
-                if (await _context.Accounts.AnyAsync(a => a.Username == username))
-                    throw new Exception("Username already exists.");
+            if (await _context.Accounts.AnyAsync(a => a.Username == username))
+                throw new Exception("Username already exists.");
 
-                var newUser = new Account
-                {
-                    Username = username,
-                    Password = password, 
-                    ScreenName = "Level1", 
-                    Strength = 0,
-                    Agility = 0,
-                    Intelligence = 0,
-                    Vitality = 0,
-                    Gold = 0
-                };
-
-                _context.Accounts.Add(newUser);
-                await _context.SaveChangesAsync();
-                return "User registered successfully";
-            }
-            catch (Exception ex)
+            var newUser = new Account
             {
-                return $"Error: {ex.InnerException?.Message ?? ex.Message}";
-            }
+                Username = username,
+                Password = password,
+                ScreenName = "Level1",
+                Strength = 0,
+                Agility = 0,
+                Intelligence = 0,
+                Vitality = 0,
+                Gold = 0
+            };
+
+            _context.Accounts.Add(newUser);
+            await _context.SaveChangesAsync();
+            return "User registered successfully";
         }
 
 
